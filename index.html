@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Information</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">   
     <style>
         body {
             display: flex;
@@ -66,7 +66,7 @@
             const email = document.getElementById('email').value;
 
             const namePattern = /^[A-Za-z\s]+$/; // Only letters and spaces allowed
-            const emailPattern = /^[a-zA-Z0-9]+@gmail\.com$/; // Letters, numbers, and @gmail.com
+            const emailPattern = /^[a-z0-9]+@gmail\.com$/; // Lowercase letters and numbers only before @gmail.com
 
             if (!namePattern.test(name)) {
                 alert("Please enter a valid name with letters only.");
@@ -81,7 +81,13 @@
             }
 
             if (!emailPattern.test(email)) {
-                alert("Please enter a valid Gmail address (letters and numbers only before @gmail.com).");
+                alert("Please enter a valid Gmail address with lowercase letters and numbers only before @gmail.com.");
+                event.preventDefault();
+                return false;
+            }
+
+            if (password !== "nesika123") { // Check if password matches
+                alert("Password must be 'nesika123'.");
                 event.preventDefault();
                 return false;
             }
@@ -105,7 +111,7 @@
             <input type="number" id="age" name="age" min="1" required>
 
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" pattern="[a-zA-Z0-9]+@gmail\.com" title="Please enter a valid Gmail address with letters and numbers only" required>
+            <input type="email" id="email" name="email" pattern="[a-z0-9]+@gmail\.com" title="Please enter a valid Gmail address with lowercase letters and numbers only" required>
 
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" minlength="8" title="Password must be at least 8 characters" required>
